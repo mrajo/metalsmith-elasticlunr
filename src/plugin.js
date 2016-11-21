@@ -9,8 +9,8 @@ const plugin = (params) => {
     indexingKey: 'index',
     ref: 'path',
     fields: [ 'title', 'contents' ],
-    bootstrap: null,
-    destFile: 'index.json'
+    destFile: 'index.json',
+    bootstrap: null
   }
   const options = Object.assign(defaults, params)
 
