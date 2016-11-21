@@ -10,7 +10,8 @@ const plugin = (params) => {
     ref: 'path',
     fields: [ 'title', 'contents' ],
     destFile: 'index.json',
-    bootstrap: null
+    bootstrap: null,
+    preprocess: null
   }
   const options = Object.assign(defaults, params)
 
@@ -23,7 +24,7 @@ const plugin = (params) => {
       })
 
       if (options.bootstrap != null) {
-        options.bootstrap.apply(this)
+        options.bootstrap.call(this)
       }
     })
 
@@ -38,7 +39,13 @@ const plugin = (params) => {
         }
 
         options.fields.forEach((field) => {
-          doc[field] = files[file][field].toString()
+          let val = files[file][field].toString()
+
+          if (field === 'contents' && typeof options.preprocess === 'function') {
+            val = options.preprocess.call(this, files[file][field].toString())
+          }
+
+          doc[field] = val
         })
 
         index.addDoc(doc)
