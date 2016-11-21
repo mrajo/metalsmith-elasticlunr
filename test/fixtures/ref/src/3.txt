@@ -1,0 +1,5 @@
+---
+title: Three
+index: true
+---
+This page won't be indexed.
