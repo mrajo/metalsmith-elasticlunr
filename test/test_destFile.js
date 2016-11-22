@@ -6,7 +6,7 @@ const plugin = require('../src/plugin')
 const elasticlunr = require('elasticlunr')
 const assert = require('./libassert')
 
-test('Test destFile option', (t) => {
+test('Test destFile option', t => {
   var src = 'test/fixtures/destFile'
 
   Metalsmith(src)

@@ -6,20 +6,18 @@ const plugin = require('../src/plugin')
 const elasticlunr = require('elasticlunr')
 const assert = require('./libassert')
 
-test('Test preprocess option', (t) => {
+test('Test preprocess option', t => {
   var src = 'test/fixtures/preprocess'
 
   Metalsmith(src)
     .use(plugin({
       fields: [ 'contents' ],
-      preprocess: (content) => {
-        return content.split('').reverse().join('')
-      }
+      preprocess: content => content.split('').reverse().join('')
     }))
     .build(assert.dirsEqual(t, src, 'index created'))
 })
 
-test('Test index contents', (t) => {
+test('Test index contents', t => {
   const data = require('./fixtures/preprocess/build/index.json')
   const index = elasticlunr.Index.load(data)
   var expected = {

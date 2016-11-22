@@ -12,7 +12,7 @@ const readdir = require('fs-readdir-recursive')
 module.exports = {
   // @file filename relative to @src to compare
   filesEqual: (t, src, file) => {
-    return (err) => {
+    return err => {
       if (err) t.fail(`Metalsmith build failed: ${err.toString()}`)
 
       const file_a = fs.readFileSync(path.join(src, 'build', file))
@@ -28,7 +28,7 @@ module.exports = {
     }
   },
   dirsEqual: (t, src, _message) => {
-    return (err) => {
+    return err => {
       if (err) t.fail(`Metalsmith build failed: ${err.toString()}`)
 
       const path_actual   = path.join(src, 'build')
@@ -43,7 +43,7 @@ module.exports = {
     }
   },
   dirsContentsEqual: (t, src) => {
-    return (err) => {
+    return err => {
       if (err) t.fail(`Metalsmith build failed: ${err.toString()}`)
 
       const path_actual   = path.join(src, 'build')
@@ -53,7 +53,7 @@ module.exports = {
 
       t.deepEqual(dir_actual, dir_expected, 'actual and expected dir trees are equal')
 
-      dir_actual.forEach((file) => {
+      dir_actual.forEach(file => {
         const file_a = fs.readFileSync(path.resolve(path_actual, file))
         const file_e = fs.readFileSync(path.resolve(path_expected, file))
 
