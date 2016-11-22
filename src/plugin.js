@@ -1,10 +1,10 @@
 'use strict'
 
-const each = require('async').each
+const eachOf = require('async').eachOf
 const elasticlunr = require('elasticlunr')
 const debug = require('debug')('metalsmith-elasticlunr')
 
-const plugin = (params) => {
+const mergeOptions = (user_opts) => {
   const defaults = {
     indexingKey: 'index',
     ref: 'path',
@@ -13,36 +13,47 @@ const plugin = (params) => {
     bootstrap: null,
     preprocess: null
   }
-  const options = Object.assign(defaults, params)
 
-  return function (files, metalsmith, done) {
-    const index = elasticlunr(function () {
-      this.setRef(options.ref)
+  return Object.assign(defaults, user_opts)
+}
 
-      options.fields.forEach((field) => {
-        this.addField(field)
-      })
+const initializeIndex = (options) => {
+  return elasticlunr(function () {
+    this.setRef(options.ref)
 
-      if (options.bootstrap != null) {
-        options.bootstrap.call(this)
-      }
+    options.fields.forEach((field) => {
+      this.addField(field)
     })
 
-    const indexFile = (file, done) => {
-      if (files[file][options.indexingKey]) {
+    if (options.bootstrap != null) {
+      options.bootstrap.call(this)
+    }
+  })
+}
+
+const plugin = (params) => {
+  const options = mergeOptions(params)
+
+  return function (files, metalsmith, done) {
+    const index = initializeIndex(options)
+
+    // signature of this function can't be changed, so it is declare here so
+    // options and index objects are in scope
+    const indexFile = (file, path, done) => {
+      if (file[options.indexingKey]) {
         const doc = {}
 
         if (options.ref === 'path') {
-          doc[options.ref] = file
+          doc[options.ref] = path
         } else {
-          doc[options.ref] = files[file][options.ref]
+          doc[options.ref] = file[options.ref]
         }
 
         options.fields.forEach((field) => {
-          let val = files[file][field].toString()
+          let val = file[field].toString()
 
           if (field === 'contents' && typeof options.preprocess === 'function') {
-            val = options.preprocess.call(this, files[file][field].toString())
+            val = options.preprocess.call(this, file[field].toString())
           }
 
           doc[field] = val
@@ -50,15 +61,15 @@ const plugin = (params) => {
 
         index.addDoc(doc)
 
-        debug(`indexing ${file}`)
+        debug(`indexing ${path}`)
         done()
       } else {
-        debug(`skipped ${file}`)
+        debug(`skipped ${path}`)
         done()
       }
     }
 
-    each(Object.keys(files), indexFile, (err) => {
+    eachOf(files, indexFile, (err) => {
       if (err) console.error(err)
       files[options.destFile] = {
         contents: new Buffer(JSON.stringify(index.toJSON()))
