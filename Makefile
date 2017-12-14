@@ -4,10 +4,6 @@ node_modules: package.json
 	@yarn
 
 test: node_modules
-	@$(nodebin)tape test/test*.js | $(nodebin)tap-spec
+	@$(nodebin)tap --cov --reporter=spec --jobs=10 test/test*.js
 
-coverage:
-	@$(nodebin)nyc tape test/test*.js
-	@$(nodebin)nyc report --reporter=lcov
-
-.PHONY: test coverage
+.PHONY: test

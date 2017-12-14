@@ -1,12 +1,12 @@
 'use strict'
 
-const test = require('tape')
+const tap = require('tap')
 const Metalsmith = require('metalsmith')
 const plugin = require('../src/plugin')
 const elasticlunr = require('elasticlunr')
 const assert = require('./libassert')
 
-test('Test preprocess option', t => {
+tap.test('Test preprocess option', t => {
   var src = 'test/fixtures/preprocess'
 
   Metalsmith(src)
@@ -17,7 +17,7 @@ test('Test preprocess option', t => {
     .build(assert.dirsEqual(t, src, 'index created'))
 })
 
-test('Test index contents', t => {
+tap.test('Test index contents', t => {
   const data = require('./fixtures/preprocess/build/index.json')
   const index = elasticlunr.Index.load(data)
   var expected = {
