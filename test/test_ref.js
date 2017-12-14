@@ -13,7 +13,7 @@ tap.test('Test ref option', t => {
     .use(plugin({
       ref: 'title'
     }))
-    .build(assert.dirsEqual(t, src, 'index created'))
+    .build(assert.indexCreated(t, src))
 })
 
 tap.test('Test index contents', t => {

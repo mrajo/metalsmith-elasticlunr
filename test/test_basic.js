@@ -11,7 +11,7 @@ tap.test('Basic index is created', t => {
 
   Metalsmith(src)
     .use(plugin())
-    .build(assert.dirsEqual(t, src, 'index created'))
+    .build(assert.indexCreated(t, src))
 })
 
 tap.test('Test index contents', t => {

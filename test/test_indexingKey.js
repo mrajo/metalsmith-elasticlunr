@@ -13,7 +13,7 @@ tap.test('Test indexingKey option', t => {
     .use(plugin({
       indexingKey: 'search'
     }))
-    .build(assert.dirsEqual(t, src, 'index created'))
+    .build(assert.indexCreated(t, src))
 })
 
 tap.test('Test index contents', t => {

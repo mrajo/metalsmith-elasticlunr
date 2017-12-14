@@ -17,7 +17,7 @@ tap.test('Test bootstrap option', t => {
         this.pipeline.after(elasticlunr.trimmer, elasticlunr.Pipeline.getRegisteredFunction('dummy'))
       },
     }))
-    .build(assert.dirsEqual(t, src, 'index created'))
+    .build(assert.indexCreated(t, src))
 })
 
 tap.test('Test index contents', t => {

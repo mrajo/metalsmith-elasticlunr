@@ -13,5 +13,5 @@ tap.test('Test destFile option', t => {
     .use(plugin({
       destFile: 'foo.json',
     }))
-    .build(assert.dirsEqual(t, src, 'index created'))
+    .build(assert.indexCreated(t, src, 'foo'))
 })

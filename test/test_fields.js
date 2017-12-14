@@ -14,7 +14,7 @@ tap.test('Test fields option', t => {
       ref: 'title',
       fields: [ 'title' ]
     }))
-    .build(assert.dirsEqual(t, src, 'index created'))
+    .build(assert.indexCreated(t, src))
 })
 
 tap.test('Test index contents', t => {
