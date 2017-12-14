@@ -4,36 +4,36 @@ const eachOf = require('async').eachOf
 const elasticlunr = require('elasticlunr')
 const debug = require('debug')('metalsmith-elasticlunr')
 
-const plugin = params => {
-  const mergeOptions = user_opts => {
-    const defaults = {
-      indexingKey: 'index',
-      ref: 'path',
-      fields: [ 'title', 'contents' ],
-      destFile: 'index.json',
-      bootstrap: null,
-      preprocess: null
-    }
+const defaults = {
+  indexingKey: 'index',
+  ref: 'path',
+  fields: [ 'title', 'contents' ],
+  destFile: 'index.json',
+  bootstrap: null,
+  preprocess: null
+}
 
-    return Object.assign(defaults, user_opts)
-  }
+const mergeOptions = user_opts => {
+  return Object.assign({}, defaults, user_opts)
+}
 
-  const initializeIndex = options => {
-    // this refers to the index object
-    return elasticlunr(function () {
-      this.setRef(options.ref)
+const initializeIndex = options => {
+  // this refers to the index object
+  return elasticlunr(function () {
+    this.setRef(options.ref)
 
-      options.fields.forEach(field => {
-        this.addField(field)
-      })
-
-      if (options.bootstrap != null) {
-        options.bootstrap.call(this)
-      }
+    options.fields.forEach(field => {
+      this.addField(field)
     })
-  }
 
-  const indexFile = (file, path, done) => {
+    if (options.bootstrap != null) {
+      options.bootstrap.call(this)
+    }
+  })
+}
+
+const indexerFn = (options, index) => {
+  return (file, path, done) => {
     if (file[options.indexingKey]) {
       const doc = {}
 
@@ -62,11 +62,15 @@ const plugin = params => {
       done()
     }
   }
+}
 
+const plugin = params => {
   const options = mergeOptions(params)
   const index = initializeIndex(options)
 
   return (files, metalsmith, done) => {
+    const indexFile = indexerFn(options, index)
+
     eachOf(files, indexFile, err => {
       if (err) console.error(err)
       files[options.destFile] = {
