@@ -60,6 +60,32 @@ Default: `null`
 This function will run when initializing the elasticlunr instance. This allows
 configuring the index beyond `ref` and `fields`, such as pipeline functions.
 
+### preprocess
+Type: `Function` or `Array`
+Default: `null`
+
+This is a function or series of functions that operate on the `content` field
+to allow for altering content before stored in the index, such as stripping HTML.
+Each function should accept a single string parameter of the document content.
+
+#### Example
+```javascript
+var Metalsmith = require('metalsmith');
+var lunr = require('metalsmith-elasticlunr');
+
+Metalsmith(__dirname)
+    .use(lunr({
+      preprocess: [
+        content => content.split('').reverse().join(''),
+        content => content.toUpperCase()
+      ]
+    }))
+    .build();
+```
+
+The indexed contents for the document would be first reversed, then changed to 
+all caps.
+
 ## License
 
 MIT © [Anthony Castle](http://github.com/mrajo)
