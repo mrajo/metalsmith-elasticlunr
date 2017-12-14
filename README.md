@@ -1,4 +1,4 @@
-# metalsmith-elasticlunr [![Build Status](https://travis-ci.org/mrajo/metalsmith-elasticlunr.svg)](https://travis-ci.org/mrajo/metalsmith-elasticlunr)
+# metalsmith-elasticlunr [![Build Status](https://travis-ci.org/mrajo/metalsmith-elasticlunr.svg)](https://travis-ci.org/mrajo/metalsmith-elasticlunr) [![Maintainability](https://api.codeclimate.com/v1/badges/8eafbfb9d2bd05190c92/maintainability)](https://codeclimate.com/github/mrajo/metalsmith-elasticlunr/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/8eafbfb9d2bd05190c92/test_coverage)](https://codeclimate.com/github/mrajo/metalsmith-elasticlunr/test_coverage)
 
 > A Metalsmith plugin for creating an elasticlunr.js search index
 

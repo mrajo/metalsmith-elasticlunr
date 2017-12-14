@@ -6,4 +6,8 @@ node_modules: package.json
 test: node_modules
 	@$(nodebin)tape test/test*.js | $(nodebin)tap-spec
 
-.PHONY: test
+coverage:
+	@$(nodebin)nyc tape test/test*.js
+	@$(nodebin)nyc report --reporter=lcov
+
+.PHONY: test coverage
