@@ -2,7 +2,7 @@
 
 const elasticlunr = require('elasticlunr')
 
-const initializeIndex = options => {
+const createIndex = options => {
   // this refers to the index object
   return elasticlunr(function () {
     this.setRef(options.ref)
@@ -18,7 +18,7 @@ const initializeIndex = options => {
 }
 
 // initialize lunr document with ref set
-const initializeDoc = (file, options, path) => {
+const createDoc = (file, options, path) => {
   const doc = {}
 
   if (options.ref === 'path') {
@@ -27,10 +27,25 @@ const initializeDoc = (file, options, path) => {
     doc[options.ref] = file[options.ref]
   }
 
+  return fillDoc(file, options, doc)
+}
+
+// copies fields from file object and applies preprocess functions on content
+const fillDoc = (file, options, doc) => {
+  options.fields.forEach(field => {
+    let val = file[field].toString()
+
+    if (field === 'contents' && typeof options.preprocess === 'function') {
+      val = options.preprocess.call(this, file[field].toString())
+    }
+
+    doc[field] = val
+  })
+
   return doc
 }
 
 module.exports = {
-  initializeIndex: initializeIndex,
-  initializeDoc: initializeDoc
+  createIndex: createIndex,
+  createDoc: createDoc
 }
