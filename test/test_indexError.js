@@ -5,7 +5,7 @@ const Metalsmith = require('metalsmith')
 const plugin = require('../src/plugin')
 
 tap.test('Test error during indexing', t => {
-  var src = 'test/fixtures/basic'
+  var src = 'test/fixtures/error'
 
   // use a preprocesser to throw an error during indexing
   Metalsmith(src)
