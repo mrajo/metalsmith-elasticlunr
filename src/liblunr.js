@@ -35,8 +35,10 @@ const fillDoc = (file, options, doc) => {
   options.fields.forEach(field => {
     let val = file[field].toString()
 
-    if (field === 'contents' && typeof options.preprocess === 'function') {
-      val = options.preprocess.call(this, file[field].toString())
+    if (field === 'contents' && options.preprocess != null) {
+      options.preprocess.forEach(fn => {
+        val = fn.call(this, val)
+      })
     }
 
     doc[field] = val
