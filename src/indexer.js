@@ -4,7 +4,7 @@ const debug = require('debug')('metalsmith-elasticlunr')
 const createDoc = require('./liblunr').createDoc
 
 // creates indexer function for async interator with bindings for index and options
-const indexerFn = (options, index) => {
+const getIndexer = (options, index) => {
   return (file, path, done) => {
     if (file[options.indexingKey]) {
       index.addDoc(createDoc(file, options, path))
@@ -17,4 +17,4 @@ const indexerFn = (options, index) => {
   }
 }
 
-module.exports = indexerFn
+module.exports = getIndexer

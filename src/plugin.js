@@ -13,12 +13,20 @@ const plugin = params => {
   return (files, metalsmith, done) => {
     const indexFile = indexer(options, index)
 
+    let docCount = 0
+    Object.keys(files).forEach(file => {
+      if (files[file][options.indexingKey]) {
+        docCount++
+      }
+    })
+
     eachOf(files, indexFile, err => {
       if (err) throw err
       files[options.destFile] = {
         contents: new Buffer(JSON.stringify(index.toJSON()))
       }
-      debug('elasticlunr indexing completed')
+
+      console.log(`elasticlunr indexing completed with ${docCount} documents.`)
       done()
     })
   }
