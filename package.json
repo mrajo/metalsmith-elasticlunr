@@ -1,6 +1,6 @@
 {
   "name": "metalsmith-elasticlunr",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "Creates an elasticlunr index from content",
   "main": "src/plugin.js",
   "repository": "mrajo/metalsmith-elasticlunr",

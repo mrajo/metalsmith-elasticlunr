@@ -34,15 +34,15 @@ const plugin = params => {
         files[options.destFile] = {
           contents: new Buffer.from(data)
         };
+
+        if (!options.silent) {
+          console.log(
+            `elasticlunr indexing completed with ${docCount} documents.`
+          );
+        }
+
+        done();
       });
-
-      if (!options.silent) {
-        console.log(
-          `elasticlunr indexing completed with ${docCount} documents.`
-        );
-      }
-
-      done();
     });
   };
 };
