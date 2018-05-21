@@ -11,13 +11,13 @@
   "license": "MIT",
   "dependencies": {
     "async": "^2.6.0",
+    "big-json": "^2.0.0",
     "debug": "^3.1.0",
     "elasticlunr": "^0.9.5",
     "fs-extra": "^5.0.0"
   },
   "devDependencies": {
     "assert-dir-equal": "^1.1.0",
-    "fs-extra": "^5.0.0",
     "fs-readdir-recursive": "^1.1.0",
     "metalsmith": "^2.3.0",
     "tap": "^11.0.0"
