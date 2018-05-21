@@ -12,7 +12,8 @@ tap.test("Test destFile option", t => {
   Metalsmith(src)
     .use(
       plugin({
-        destFile: "foo.json"
+        destFile: "foo.json",
+        silent: true
       })
     )
     .build(assert.indexCreated(t, src, "foo"));

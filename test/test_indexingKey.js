@@ -12,7 +12,8 @@ tap.test("Test indexingKey option", t => {
   Metalsmith(src)
     .use(
       plugin({
-        indexingKey: "search"
+        indexingKey: "search",
+        silent: true
       })
     )
     .build(assert.indexCreated(t, src));

@@ -6,7 +6,8 @@ const defaults = {
   fields: ["title", "contents"],
   destFile: "index.json",
   bootstrap: null,
-  preprocess: null
+  preprocess: null,
+  silent: false
 };
 
 // preprocess should be an array of functions

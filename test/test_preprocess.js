@@ -17,7 +17,8 @@ tap.test("Test preprocess option (single function)", t => {
           content
             .split("")
             .reverse()
-            .join("")
+            .join(""),
+        silent: true
       })
     )
     .build(assert.indexCreated(t, src));

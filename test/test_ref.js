@@ -12,7 +12,8 @@ tap.test("Test ref option", t => {
   Metalsmith(src)
     .use(
       plugin({
-        ref: "title"
+        ref: "title",
+        silent: true
       })
     )
     .build(assert.indexCreated(t, src));

@@ -10,7 +10,7 @@ tap.test("Basic index is created", t => {
   var src = "test/fixtures/basic";
 
   Metalsmith(src)
-    .use(plugin())
+    .use(plugin({ silent: true }))
     .build(assert.indexCreated(t, src));
 });
 

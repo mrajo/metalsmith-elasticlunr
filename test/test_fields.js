@@ -13,7 +13,8 @@ tap.test("Test fields option", t => {
     .use(
       plugin({
         ref: "title",
-        fields: ["title"]
+        fields: ["title"],
+        silent: true
       })
     )
     .build(assert.indexCreated(t, src));

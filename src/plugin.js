@@ -36,7 +36,12 @@ const plugin = params => {
         };
       });
 
-      console.log(`elasticlunr indexing completed with ${docCount} documents.`);
+      if (!options.silent) {
+        console.log(
+          `elasticlunr indexing completed with ${docCount} documents.`
+        );
+      }
+
       done();
     });
   };

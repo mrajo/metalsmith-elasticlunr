@@ -13,7 +13,8 @@ tap.test("Test error during indexing", t => {
       plugin({
         preprocess: content => {
           throw new Error("test error");
-        }
+        },
+        silent: true
       })
     )
     .build(err => {

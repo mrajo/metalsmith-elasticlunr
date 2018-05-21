@@ -19,7 +19,8 @@ tap.test("Test bootstrap option", t => {
             elasticlunr.trimmer,
             elasticlunr.Pipeline.getRegisteredFunction("dummy")
           );
-        }
+        },
+        silent: true
       })
     )
     .build(assert.indexCreated(t, src));
