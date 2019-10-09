@@ -1,9 +1,9 @@
 language: node_js
 node_js:
-  - "9.2"
-  - "9.0"
-  - "8.9"
-  - "8.0"
+  - "node"
+  - "lts/*"
+  - "10"
+  - "8"
 env:
   global:
     - CC_TEST_REPORTER_ID=cce25600e801ad1ded6f62017ef3d0c12009403052530696c91f9d9ae4db0890
