@@ -32,7 +32,7 @@ const plugin = params => {
         if (err) throw new Error(`Error stringifying data: ${indexFile}`);
 
         files[options.destFile] = {
-          contents: new Buffer.from(data)
+          contents: Buffer.from(data)
         };
 
         if (!options.silent) {
