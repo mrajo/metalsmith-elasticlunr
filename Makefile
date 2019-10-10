@@ -4,6 +4,9 @@ node_modules: package.json
 	@yarn
 
 test: node_modules
-	@$(nodebin)tap --cov --reporter=spec --jobs=10 test/test*.js
+	@$(nodebin)tap --jobs=10 --reporter=specy test/test*.js
+
+travis_test: node_modules
+	@$(nodebin)tap --jobs=10 --reporter=terse --coverage-report=lcov test/test*.js
 
 .PHONY: test
