@@ -56,7 +56,8 @@ tap.test("Test preprocess option (multiple functions)", t => {
               .reverse()
               .join(""),
           content => content.toUpperCase()
-        ]
+        ],
+        silent: true
       })
     )
     .build(assert.indexCreated(t, src, "multiple"));
