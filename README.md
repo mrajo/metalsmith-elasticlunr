@@ -1,4 +1,10 @@
-# metalsmith-elasticlunr [![Build Status](https://travis-ci.org/mrajo/metalsmith-elasticlunr.svg)](https://travis-ci.org/mrajo/metalsmith-elasticlunr) [![Maintainability](https://api.codeclimate.com/v1/badges/8eafbfb9d2bd05190c92/maintainability)](https://codeclimate.com/github/mrajo/metalsmith-elasticlunr/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/8eafbfb9d2bd05190c92/test_coverage)](https://codeclimate.com/github/mrajo/metalsmith-elasticlunr/test_coverage)
+# metalsmith-elasticlunr
+
+![GitHub package.json version](https://img.shields.io/github/package-json/v/mrajo/metalsmith-elasticlunr) [![Build Status](https://travis-ci.org/mrajo/metalsmith-elasticlunr.svg)](https://travis-ci.org/mrajo/metalsmith-elasticlunr)
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/8eafbfb9d2bd05190c92/maintainability)](https://codeclimate.com/github/mrajo/metalsmith-elasticlunr/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/8eafbfb9d2bd05190c92/test_coverage)](https://codeclimate.com/github/mrajo/metalsmith-elasticlunr/test_coverage)
+
+[![Dependencies Status](https://david-dm.org/mrajo/metalsmith-elasticlunr/status.svg)](https://david-dm.org/mrajo/metalsmith-elasticlunr) [![Dev Dependencies Status](https://david-dm.org/mrajo/metalsmith-elasticlunr/dev-status.svg)](https://david-dm.org/mrajo/metalsmith-elasticlunr?type=dev)
 
 > A Metalsmith plugin for creating an elasticlunr.js search index
 
